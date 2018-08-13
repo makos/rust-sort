@@ -1,10 +1,3 @@
-fn main() {
-    let mut random = vec![9, 3, 2, 6, 1, 4, 8, 5, 7];
-    println!("{:?}", random);
-    quicksort(&mut random);
-    println!("{:?}", random);
-}
-
 fn quicksort(arr: &mut [i32]) {
     if arr.len() > 1 {
         let len = arr.len();
@@ -27,5 +20,18 @@ fn quicksort(arr: &mut [i32]) {
         }
         quicksort(&mut arr[0..right + 1]);
         quicksort(&mut arr[left..len]);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn sort_ints() {
+        let mut arr = vec![9, 7, 6, 4, 2, 1, 3, 5, 8];
+        let sorted = vec![1, 2, 3, 4, 5, 6, 7, 8, 9];
+        quicksort(&mut arr);
+        assert_eq!(arr, sorted);
     }
 }
